@@ -26,7 +26,7 @@ fn main() {
         .join(".build/release")
         .join(&static_lib_name);
 
-    println!("cargo:warning=Swift static lib path: {:?}", swift_lib_path);
+    //println!("cargo:warning=Swift static lib path: {:?}", swift_lib_path);
 
     // 3. 复制到 target/debug
     let target_dir = manifest_dir.join("target/debug");

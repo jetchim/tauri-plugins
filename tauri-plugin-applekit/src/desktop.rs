@@ -35,6 +35,28 @@ impl<R: Runtime> Applekit<R> {
         };
         Ok(result)
     }
+
+    pub fn save_keychain(&self, key: String, value: String) -> crate::Result<i32> {
+        let status = unsafe {
+            let key = CString::new(key.as_str()).unwrap();
+            let value = CString::new(value.as_str()).unwrap();
+            bridge::save_keychain(key.as_ptr(), value.as_ptr())
+        };
+        Ok(status)
+    }
+
+    pub fn load_keychain(&self, key: String) -> crate::Result<Option<String>> {
+        let result = unsafe {
+            let key = CString::new(key.as_str()).unwrap();
+            let result_ptr = bridge::load_keychain(key.as_ptr());
+            if result_ptr.is_null() {
+                None
+            } else {
+                Some(take_string(result_ptr))
+            }
+        };
+        Ok(result)
+    }
 }
 
 unsafe fn take_string(ptr: *const c_char) -> String {

@@ -20,3 +20,22 @@ pub(crate) async fn get_user_default<R: Runtime>(
     let applekit = app.applekit();
     applekit.get_user_default(key)
 }
+
+#[command]
+pub(crate) async fn save_keychain<R: Runtime>(
+    app: AppHandle<R>,
+    key: String,
+    value: String,
+) -> Result<bool> {
+    let applekit = app.applekit();
+    applekit.save_keychain(key, value).map(|s| s == 1)
+}
+
+#[command]
+pub(crate) async fn load_keychain<R: Runtime>(
+    app: AppHandle<R>,
+    key: String,
+) -> Result<Option<String>> {
+    let applekit = app.applekit();
+    applekit.load_keychain(key)
+}

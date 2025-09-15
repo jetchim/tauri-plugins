@@ -36,14 +36,18 @@ impl<R: Runtime, T: Manager<R>> crate::ApplekitExt<R> for T {
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("applekit")
-        .invoke_handler(tauri::generate_handler![commands::set_user_default, commands::get_user_default])
+        .invoke_handler(tauri::generate_handler![
+            commands::set_user_default,
+            commands::get_user_default,
+            commands::save_keychain,
+            commands::load_keychain,
+        ])
         .setup(|app, api| {
             #[cfg(mobile)]
             let applekit = mobile::init(app, api)?;
             #[cfg(desktop)]
             let applekit = desktop::init(app, api)?;
             app.manage(applekit);
-            println!("AppleKit Plugin initialized.");
             Ok(())
         })
         .build()

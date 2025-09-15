@@ -4,7 +4,12 @@ use std::{env, fs};
 
 const LIB_NAME: &str = "CLibAppleKitBridge";
 const SWIFT_CODE_DIR: &str = "native_applekit";
-const COMMANDS: &[&str] = &["set_user_default", "get_user_default"];
+const COMMANDS: &[&str] = &[
+    "set_user_default",
+    "get_user_default",
+    "save_keychain",
+    "load_keychain",
+];
 
 fn main() {
     let static_lib_name = format!("lib{}.a", LIB_NAME);
@@ -26,7 +31,7 @@ fn main() {
         .join(".build/release")
         .join(&static_lib_name);
 
-    println!("cargo:warning=Swift static lib path: {:?}", swift_lib_path);
+    //println!("cargo:warning=Swift static lib path: {:?}", swift_lib_path);
 
     // 3. 复制到 target/debug
     let target_dir = manifest_dir.join("target/debug");
