@@ -39,3 +39,13 @@ pub(crate) async fn load_keychain<R: Runtime>(
     let applekit = app.applekit();
     applekit.load_keychain(key)
 }
+
+#[command]
+pub(crate) async fn set_theme<R: Runtime>(
+    app: AppHandle<R>,
+    theme: Option<tauri_utils::Theme>,
+) -> Result<()> {
+    let applekit = app.applekit();
+    applekit.set_theme(theme)?;
+    Ok(())
+}

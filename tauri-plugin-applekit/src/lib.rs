@@ -1,3 +1,4 @@
+use serde::{Deserialize, Serialize};
 use tauri::{
     plugin::{Builder, TauriPlugin},
     Manager, Runtime,
@@ -41,6 +42,7 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
             commands::get_user_default,
             commands::save_keychain,
             commands::load_keychain,
+            commands::set_theme,
         ])
         .setup(|app, api| {
             #[cfg(mobile)]

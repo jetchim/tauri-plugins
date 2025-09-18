@@ -1,6 +1,6 @@
 import "./App.css";
 import {useEffect} from "react";
-import {get, set} from "../../../applekit-api";
+import {get, set, set_theme} from "../../../applekit-api";
 
 function App() {
 
@@ -12,6 +12,10 @@ function App() {
             get('testkey').then(_ => {
             })
         });
+
+        setTimeout(() => {
+            set_theme("dark").finally();
+        }, 5000)
     }, []);
 
     return (

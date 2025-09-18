@@ -4,5 +4,6 @@ permissions = [
     "allow-set-user-default",
     "allow-get-user-default",
     "allow-save-keychain",
-    "allow-load-keychain"
+    "allow-load-keychain",
+    "allow-set-theme"
 ]

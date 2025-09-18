@@ -18,6 +18,13 @@ export async function get(key: string): Promise<string | null> {
     }).then(r => r)
 }
 
+export async function set_theme(theme: string): Promise<void> {
+    return await invoke('set_theme', {
+        theme: theme
+    }).then(_ => {
+    })
+}
+
 async function invoke(cmd: string, params: any): Promise<any> {
     return await tauri_invoke<any>(`plugin:applekit|${cmd}`, params).then(r => r)
 }

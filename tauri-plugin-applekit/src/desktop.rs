@@ -1,7 +1,7 @@
 use crate::bridge;
 use serde::de::DeserializeOwned;
 use std::ffi::{c_char, CStr, CString};
-use tauri::{plugin::PluginApi, AppHandle, Runtime};
+use tauri::{plugin::PluginApi, AppHandle, Manager, Runtime};
 
 pub fn init<R: Runtime, C: DeserializeOwned>(
     app: &AppHandle<R>,
@@ -56,6 +56,14 @@ impl<R: Runtime> Applekit<R> {
             }
         };
         Ok(result)
+    }
+
+    pub fn set_theme(&self, theme: Option<tauri_utils::Theme>) -> crate::Result<()> {
+        let app = &self.0;
+        for window in app.webview_windows().values() {
+            let _ = window.set_theme(theme);
+        }
+        Ok(())
     }
 }
 

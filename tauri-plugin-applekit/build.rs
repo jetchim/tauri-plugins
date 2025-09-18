@@ -9,6 +9,7 @@ const COMMANDS: &[&str] = &[
     "get_user_default",
     "save_keychain",
     "load_keychain",
+    "set_theme"
 ];
 
 fn main() {

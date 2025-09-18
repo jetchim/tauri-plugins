@@ -1,7 +1,7 @@
 [package]
 name = "tauri-plugin-applekit"
 version = "0.1.0"
-authors = [ "You" ]
+authors = ["You"]
 description = ""
 edition = "2021"
 rust-version = "1.77.2"
@@ -12,7 +12,10 @@ links = "tauri-plugin-applekit"
 tauri = { version = "2.5.0" }
 serde = "1.0"
 thiserror = "2"
-libc = "0.2.175"
+tauri-utils = "2.7.0"
+
+[target."cfg(target_os = \"macos\")".dependencies]
+cocoa = "0.26"
 
 [build-dependencies]
 tauri-plugin = { version = "2.2.0", features = ["build"] }
