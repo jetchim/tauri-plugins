@@ -37,12 +37,14 @@ where
     F: Fn(&AppHandle<R>, IapPayload) + Send + Sync + 'static,
 {
     Builder::new("storekit2")
-        .invoke_handler(tauri::generate_handler![commands::ping, commands::pay, commands::restore_purchase])
+        .invoke_handler(tauri::generate_handler![commands::pay, commands::restore_purchase])
         .setup(|app, api| {
             #[cfg(mobile)]
             let storekit2 = mobile::init(app, api)?;
             #[cfg(desktop)]
             let storekit2 = desktop::init(app, api)?;
+            storekit2.register_iap_callback();
+
             let cloned_app = app.clone();
             set_event_handler(move |payload| handler(&cloned_app, payload));
             app.manage(storekit2);

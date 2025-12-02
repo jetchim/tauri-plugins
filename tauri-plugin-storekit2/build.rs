@@ -4,7 +4,7 @@ use std::{env, fs};
 
 const LIB_NAME: &str = "CLibStoreKitBridge";
 const SWIFT_CODE_DIR: &str = "native_storekit";
-const COMMANDS: &[&str] = &["ping", "pay", "restore_purchase"];
+const COMMANDS: &[&str] = &["pay", "restore_purchase"];
 
 fn main() {
     let static_lib_name = format!("lib{}.a", LIB_NAME);

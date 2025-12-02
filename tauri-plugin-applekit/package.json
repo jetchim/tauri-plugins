@@ -25,10 +25,10 @@
     "@tauri-apps/api": "^2"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@tauri-apps/cli": "^2",
     "rollup": "^4.9.6",
-    "typescript": "^5.3.3",
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
   }
 }
