@@ -43,6 +43,8 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
             commands::save_keychain,
             commands::load_keychain,
             commands::set_theme,
+            commands::show_hud,
+            commands::close_hud,
         ])
         .setup(|app, api| {
             #[cfg(mobile)]

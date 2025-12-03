@@ -56,10 +56,12 @@ class StoreManager: NSObject {
     // MARK: - Transaction Handler
     func handleTransaction(_ transaction: Transaction) async {
         let productId = transaction.productID
+        let transactionId = transaction.appTransactionID;
         let json = """
         {
             "productId": "\(productId)",
-            "appAccountToken": "\(transaction.appAccountToken?.uuidString ?? "")"
+            "appAccountToken": "\(transaction.appAccountToken?.uuidString ?? "")",
+            "transactionId": "\(transactionId)"
         }
         """
         send(event: "UNLOCK_PRODUCT", data: json, error: nil)

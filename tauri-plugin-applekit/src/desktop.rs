@@ -65,6 +65,22 @@ impl<R: Runtime> Applekit<R> {
         }
         Ok(())
     }
+
+    pub fn show_hud(&self, window_number: isize) -> crate::Result<()> {
+        let app = &self.0;
+        unsafe {
+            bridge::show_hud(window_number);
+        }
+        Ok(())
+    }
+
+    pub fn close_hud(&self, window_number: isize) -> crate::Result<()> {
+        let app = &self.0;
+        unsafe {
+            bridge::close_hud(window_number);
+        }
+        Ok(())
+    }
 }
 
 unsafe fn take_string(ptr: *const c_char) -> String {

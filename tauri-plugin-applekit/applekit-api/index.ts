@@ -18,9 +18,23 @@ export async function get(key: string): Promise<string | null> {
     }).then(r => r)
 }
 
-export async function set_theme(theme: string): Promise<void> {
+export async function setTheme(theme: string): Promise<void> {
     return await invoke('set_theme', {
         theme: theme
+    }).then(_ => {
+    })
+}
+
+export async function showHUD(label: string): Promise<void> {
+    return await invoke('show_hud', {
+        label: label
+    }).then(_ => {
+    })
+}
+
+export async function hideHUD(label: string): Promise<void> {
+    return await invoke('close_hud', {
+        label: label
     }).then(_ => {
     })
 }
